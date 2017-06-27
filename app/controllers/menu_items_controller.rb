@@ -4,7 +4,8 @@ class MenuItemsController < ApplicationController
   # GET /menu_items
   # GET /menu_items.json
   def index
-    @menu_items = MenuItem.all
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menu_items = @restaurant.menu_items
   end
 
   # GET /menu_items/1

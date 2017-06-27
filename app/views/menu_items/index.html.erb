@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Menu Items</h1>
+<h1>Menu Items for <%= @restaurant.name %></h1>
 
 <table>
   <thead>
@@ -27,3 +27,5 @@
 <br>
 
 <%= link_to 'New Menu Item', new_menu_item_path %>
+
+<%= link_to 'Back to Show Page', restaurant_path(@restaurant) %>
