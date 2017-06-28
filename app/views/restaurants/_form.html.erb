@@ -21,6 +21,10 @@
     <%= form.text_field :phone, id: :restaurant_phone %>
   </div>
 
+  <div class="field">
+    <%= form.collection_select :business_model_id, BusinessModel.all, :id, :name, include_blank: true %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
