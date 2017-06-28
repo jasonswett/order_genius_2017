@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628174728) do
+ActiveRecord::Schema.define(version: 20170628175702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,12 @@ ActiveRecord::Schema.define(version: 20170628174728) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone", null: false
+    t.integer "business_model_id", null: false
+    t.index ["business_model_id"], name: "index_restaurants_on_business_model_id"
     t.index ["name"], name: "index_restaurants_on_name", unique: true
     t.index ["phone"], name: "index_restaurants_on_phone", unique: true
   end
 
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "restaurants", "business_models"
 end
