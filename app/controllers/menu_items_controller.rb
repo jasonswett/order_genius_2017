@@ -15,7 +15,8 @@ class MenuItemsController < ApplicationController
 
   # GET /menu_items/new
   def new
-    @menu_item = MenuItem.new
+    restaurant = Restaurant.find(params[:restaurant_id])
+    @menu_item = MenuItem.new(restaurant: restaurant)
   end
 
   # GET /menu_items/1/edit
@@ -29,7 +30,7 @@ class MenuItemsController < ApplicationController
 
     respond_to do |format|
       if @menu_item.save
-        format.html { redirect_to @menu_item, notice: 'Menu item was successfully created.' }
+        format.html { redirect_to restaurant_menu_items_path(@menu_item.restaurant), notice: 'Menu item was successfully created.' }
         format.json { render :show, status: :created, location: @menu_item }
       else
         format.html { render :new }
