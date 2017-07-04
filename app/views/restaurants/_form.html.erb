@@ -25,6 +25,14 @@
     <%= form.collection_select :business_model_id, BusinessModel.all, :id, :name, include_blank: true %>
   </div>
 
+  <div class="field">
+    <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |row| %>
+      <%= row.label do %>
+        <%= row.check_box + row.text %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
