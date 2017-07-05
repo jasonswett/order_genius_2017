@@ -5,7 +5,7 @@ class Restaurant < ApplicationRecord
   belongs_to :business_model
 
   validates :name, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, numericality: true
 
   def to_s
     name
