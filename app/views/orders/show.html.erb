@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orderer name:</strong>
+  <%= @order.orderer_name %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.menu_items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td>$<%= '%.2f' % item.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><strong>Total: </strong> <%= @order.total %> </p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
