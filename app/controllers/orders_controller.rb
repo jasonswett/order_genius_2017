@@ -29,7 +29,13 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(order_params.except(:order_menu_items))
+
+    order_menu_items = order_params[:order_menu_items].map do |order_menu_item_hash|
+      OrderMenuItem.new(order_menu_item_hash)
+    end.reject { |order_menu_item| order_menu_item.quantity == 0 }
+
+    @order.order_menu_items << order_menu_items
 
     respond_to do |format|
       if @order.save
@@ -77,7 +83,7 @@ class OrdersController < ApplicationController
       params.require(:order).permit(
         :restaurant_id,
         :customer_name,
-        :order_menu_items => [
+        order_menu_items: [
           :menu_item_id,
           :quantity
         ]
