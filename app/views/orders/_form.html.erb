@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= render 'menu_items/list', { menu_items: @order.restaurant.menu_items } %>
+  <%= render 'menu_items/list', { menu_items: @order.restaurant.menu_items, form: form } %>
 
   <div class="actions">
     <%= form.submit %>

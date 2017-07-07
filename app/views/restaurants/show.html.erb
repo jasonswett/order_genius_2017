@@ -4,6 +4,6 @@
 
 <h2>Menu</h2>
 
-<%= render 'menu_items/list', { menu_items: @restaurant.menu_items } %>
+<%= render 'menu_items/list', { menu_items: @restaurant.menu_items, form: nil } %>
 
 <%= link_to 'Place Order', new_restaurant_order_path(@restaurant) %>
