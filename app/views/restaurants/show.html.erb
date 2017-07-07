@@ -4,22 +4,6 @@
 
 <h2>Menu</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @restaurant.menu_items.each do |menu_item| %>
-      <tr>
-        <td><%= menu_item.name %></td>
-        <td><%= number_to_currency(menu_item.price, precision: 2) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'menu_items/list', { menu_items: @restaurant.menu_items } %>
 
 <%= link_to 'Place Order', new_restaurant_order_path(@restaurant) %>

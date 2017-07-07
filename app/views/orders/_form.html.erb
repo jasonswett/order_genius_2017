@@ -11,15 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :restaurant_id %>
-    <%= form.text_field :restaurant_id, id: :order_restaurant_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :customer_name %>
-    <%= form.text_field :customer_name, id: :order_customer_name %>
-  </div>
+  <%= render 'menu_items/list', { menu_items: @order.restaurant.menu_items } %>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% menu_items.each do |menu_item| %>
+      <tr>
+        <td><%= menu_item.name %></td>
+        <td><%= number_to_currency(menu_item.price, precision: 2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
