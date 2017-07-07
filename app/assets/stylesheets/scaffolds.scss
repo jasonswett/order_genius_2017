@@ -1,15 +1,17 @@
 body {
   background-color: #fff;
-  color: #333;
+  background-image: asset_url('space.jpg');
+  color: yellow;
   margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
   line-height: 18px;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+body, p, ol, ul, td {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
   font-size: 13px;
+}
+
+p, ol, ul, td {
   line-height: 18px;
 }
 
