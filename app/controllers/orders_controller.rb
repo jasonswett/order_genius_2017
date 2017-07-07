@@ -14,7 +14,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    restaurant = Restaurant.find(params[:restaurant_id])
+    @order = Order.new(restaurant: restaurant)
   end
 
   # GET /orders/1/edit
