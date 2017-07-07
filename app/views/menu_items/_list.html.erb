@@ -14,7 +14,9 @@
         <td><%= menu_item.name %></td>
         <td><%= number_to_currency(menu_item.price, precision: 2) %></td>
         <% if form.present? %>
-          <td><input type="number" value="1"></td>
+          <td>
+            <%= form.number_field :quantity, value: 0, in: 0..100 %>
+          </td>
         <% end %>
       </tr>
     <% end %>
