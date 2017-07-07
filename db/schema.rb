@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707141059) do
+ActiveRecord::Schema.define(version: 20170707141352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20170707141059) do
     t.datetime "updated_at", null: false
     t.decimal "price", precision: 8, scale: 2, default: "0.0", null: false
     t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
+  end
+
+  create_table "order_menu_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "menu_item_id", null: false
+    t.integer "quantity", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_item_id"], name: "index_order_menu_items_on_menu_item_id"
+    t.index ["order_id", "menu_item_id"], name: "index_order_menu_items_on_order_id_and_menu_item_id", unique: true
+    t.index ["order_id"], name: "index_order_menu_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -68,6 +79,8 @@ ActiveRecord::Schema.define(version: 20170707141059) do
   end
 
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "order_menu_items", "menu_items"
+  add_foreign_key "order_menu_items", "orders"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "restaurant_tags", "restaurants"
   add_foreign_key "restaurant_tags", "tags"

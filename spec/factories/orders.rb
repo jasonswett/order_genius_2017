@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :order do
-    restaurant nil
-    customer_name "MyString"
+    restaurant
+    customer_name { Faker::Lorem.characters(10) }
   end
 end
