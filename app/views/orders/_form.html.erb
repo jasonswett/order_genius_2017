@@ -11,28 +11,28 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :restaurant_id, value: order.restaurant_id %>
+
   <table>
     <thead>
       <tr>
         <th>Name</th>
         <th>Price</th>
-        <% if form.present? %>
-          <th>Quantity</th>
-        <% end %>
+        <th>Quantity</th>
       </tr>
     </thead>
-    <tbody>
-      <% @order.restaurant.menu_items.each do |menu_item| %>
-        <tr>
-          <td><%= menu_item.name %></td>
-          <td><%= number_to_currency(menu_item.price, precision: 2) %></td>
-          <% if form.present? %>
-            <td>
-              <%= form.number_field :quantity, value: 0, in: 0..100 %>
-            </td>
+    <% order.order_menu_items.each do |order_menu_item| %>
+      <tr>
+        <td><%= order_menu_item.menu_item.name %></td>
+        <td><%= number_to_currency(order_menu_item.menu_item.price, precision: 2) %></td>
+        <td>
+          <%= form.fields_for 'order_menu_items[]', order_menu_item, hidden_field_id: true do |order_menu_item_form| %>
+            <%= order_menu_item_form.hidden_field :menu_item_id, value: order_menu_item.menu_item_id %>
+            <%= order_menu_item_form.number_field :quantity, value: 0, in: 0..100 %>
           <% end %>
-        </tr>
-      <% end %>
+        </td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
 

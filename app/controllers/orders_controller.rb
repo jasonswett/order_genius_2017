@@ -16,6 +16,10 @@ class OrdersController < ApplicationController
   def new
     restaurant = Restaurant.find(params[:restaurant_id])
     @order = Order.new(restaurant: restaurant)
+
+    restaurant.menu_items.each do |menu_item|
+      @order.order_menu_items.new(menu_item: menu_item)
+    end
   end
 
   # GET /orders/1/edit
@@ -70,6 +74,13 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:restaurant_id, :customer_name)
+      params.require(:order).permit(
+        :restaurant_id,
+        :customer_name,
+        :order_menu_items => [
+          :menu_item_id,
+          :quantity
+        ]
+      )
     end
 end
