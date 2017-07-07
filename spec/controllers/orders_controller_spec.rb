@@ -36,6 +36,10 @@ RSpec.describe OrdersController, type: :controller do
   # OrdersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before do
+    @restaurant = create(:restaurant)
+  end
+
   describe "GET #index" do
     it "assigns all orders as @orders" do
       order = Order.create! valid_attributes
@@ -54,7 +58,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new order as @order" do
-      get :new, params: {}, session: valid_session
+      get :new, params: { restaurant_id: @restaurant.id }, session: valid_session
       expect(assigns(:order)).to be_a_new(Order)
     end
   end
