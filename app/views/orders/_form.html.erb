@@ -11,7 +11,30 @@
     </div>
   <% end %>
 
-  <%= render 'menu_items/list', { menu_items: @order.restaurant.menu_items, form: form } %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <% if form.present? %>
+          <th>Quantity</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.restaurant.menu_items.each do |menu_item| %>
+        <tr>
+          <td><%= menu_item.name %></td>
+          <td><%= number_to_currency(menu_item.price, precision: 2) %></td>
+          <% if form.present? %>
+            <td>
+              <%= form.number_field :quantity, value: 0, in: 0..100 %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="actions">
     <%= form.submit %>
