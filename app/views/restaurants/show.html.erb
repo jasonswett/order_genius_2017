@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+<h1><%= @restaurant.name %></h1>
 
-<%= link_to 'Menu Items', restaurant_menu_items_path(@restaurant) %> |
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<h2>Menu</h2>
+
+<%= render 'menu_items/list', { menu_items: @restaurant.menu_items, form: nil } %>
+
+<%= link_to 'Place Order', new_restaurant_order_path(@restaurant) %>

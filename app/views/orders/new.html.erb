@@ -1,0 +1,5 @@
+<%= link_to "Back to #{@order.restaurant.name}", restaurant_path(@order.restaurant) %>
+
+<h1>New Order</h1>
+
+<%= render 'form', order: @order %>
