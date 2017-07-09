@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :orders
     resources :menu_items
   end
+
+  root 'restaurants#index'
 end
