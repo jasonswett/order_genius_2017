@@ -7,4 +7,8 @@ class Order < ApplicationRecord
   def description
     menu_items.map(&:name).join(', ')
   end
+
+  def total
+    menu_items.map(&:price).inject(:+)
+  end
 end
