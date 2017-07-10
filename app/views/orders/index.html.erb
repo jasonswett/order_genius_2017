@@ -8,6 +8,7 @@
       <th>Restaurant</th>
       <th>Customer name</th>
       <th>Description</th>
+      <th>Total</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= order.restaurant %></td>
         <td><%= order.customer_name %></td>
         <td><%= order.description %></td>
+        <td><%= number_to_currency(order.total) %></td>
       </tr>
     <% end %>
   </tbody>
