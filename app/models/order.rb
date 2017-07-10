@@ -5,10 +5,10 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_menu_items
 
   def description
-    menu_items.map(&:name).join(', ')
+    ''
   end
 
   def total
-    menu_items.map(&:price).inject(:+)
+    0
   end
 end
